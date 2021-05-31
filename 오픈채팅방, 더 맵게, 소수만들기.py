@@ -78,17 +78,53 @@ def solution(a):
 
 # <<기능개발>>
 
-p1 = [95, 90, 99, 99, 80, 99]	
-sp = [1, 1, 1, 1, 1, 1]
-p2 = [100-i for i in p1] #[5, 10, 1, 1, 20, 1]
-ans_list = []
-for i in range(len(sp)):
-    if p2[i]%sp[i] == 0 : ans_list.append(p2[i]//sp[i])
-    else : ans_list.append((p2[i]//sp[i])+1)
-ans = []
-for j in range(len(ans_list)-2):
-    if ans_list[j] < ans_list[j+1] : ans.append(1)
+''' 슈레기같은 코드 ㅋㅋㅋ
+from collections import deque 
+p1 = [93, 30, 55]	
+sp = [1, 30, 5]
 
-# if ans_list[0] < ans_list[1] : ans.append(1)
-# else :
-    
+def solution(p1,sp):
+
+    p2 = [100-i for i in p1] #[5, 10, 1, 1, 20, 1]
+    ans_list = []
+    for i in range(len(sp)):
+        if p2[i]%sp[i] == 0 : ans_list.append(p2[i]//sp[i])
+        else : ans_list.append((p2[i]//sp[i])+1)
+
+    ans = []
+    for i in range(len(ans_list)-1):
+        for j in range(i+1,len(ans_list)):
+            if ans_list[i] < ans_list[j] :
+                ans.append(ans_list.index(ans_list[j]))
+                
+    real_ans = [ans[0]]
+    if len(ans)>=2:
+        for a in range(len(ans)-1):
+            if ans[a+1]-ans[a] != 0:
+                real_ans.append(ans[a+1]-ans[a])
+    real_ans.append(len(ans)-ans[-1]+1)
+    return real_ans'''
+
+
+
+import math
+def solution(pr, sp):
+    n = len(pr)
+    remain = [] # [7,3,9]  [5,10,1,1,20,1]
+    for i in range(n):
+        p = math.ceil((100-pr[i])/sp[i])
+        remain.append(p)
+    ans = []
+    while remain:
+        cut = remain.pop(0)
+        count = 1
+        while len(remain) != 0 and cut >= remain[0]:
+            count += 1
+            remain.pop(0)
+        ans.append(count)
+    return ans
+
+
+pr = [93, 30, 55]	
+sp = [1, 30, 5]
+print(solution(pr,sp))
