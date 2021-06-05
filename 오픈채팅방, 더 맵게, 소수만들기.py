@@ -106,7 +106,7 @@ def solution(p1,sp):
     return real_ans'''
 
 
-
+'''
 import math
 def solution(pr, sp):
     n = len(pr)
@@ -124,7 +124,25 @@ def solution(pr, sp):
         ans.append(count)
     return ans
 
+'''
+# 다시 연습
+import math
+def solution(pr,sp):
+    ans = [] # [7, 3, 9]
+    r_ans = []
+    [ans.append(math.ceil((100-pr[i])/sp[i])) for i in range(len(pr))]
 
-pr = [93, 30, 55]	
-sp = [1, 30, 5]
+    while ans:
+        cut = ans.pop(0)
+        count = 1
+        while len(ans) != 0 and cut >= ans[0]:
+            count += 1
+            ans.pop(0)
+        r_ans.append(count)
+    return r_ans
+
+
+pr = [95, 90, 99, 99, 80, 99]
+sp = [1, 1, 1, 1, 1, 1]
 print(solution(pr,sp))
+

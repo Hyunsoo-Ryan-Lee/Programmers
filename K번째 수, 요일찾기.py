@@ -33,3 +33,8 @@ def date(a,b):
 
 print(date(5,18))
 '''
+
+
+from collections import deque
+bridge = deque([1]*2)
+print(sum(bridge))
