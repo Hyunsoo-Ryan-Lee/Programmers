@@ -1,5 +1,5 @@
 # 모의고사
-
+'''
 def solution(ans):
     x = [1,2,3,4,5]
     y = [2,1,2,3,2,4,2,5]
@@ -18,9 +18,10 @@ def solution(ans):
 
 ans = [1,3,2,4,2]
 print(solution(ans))
+'''
 
 # 소수 찾기
-
+'''
 from itertools import permutations
 def solution(number):
     ans = []
@@ -39,8 +40,28 @@ def solution(number):
             if test == 0:
                 count += 1  
     return count
-        
+
 
 a = '011'
 print(solution(a))
+'''
 
+
+# 숫자카드 (백준 알고리즘)
+
+
+# n = int(input())
+# a = list(map(int,input().split(' ')))
+# m = int(input())
+# b = list(map(int,input().split(' ')))
+# ans = []
+# for i in m:
+#     ans.append(n.count(i))
+# ans = list(map(str,ans))
+# print(' '.join(ans))
+
+
+
+from collections import Counter
+
+print(Counter('is this the real life'))
