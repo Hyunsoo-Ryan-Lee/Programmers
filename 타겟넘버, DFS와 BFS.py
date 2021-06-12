@@ -86,7 +86,6 @@ print(*abc)
 
 # 백준 - DFS와 BFS
 
-
 n=4
 p = [(1,2),(1,3),(1,4),(2,4),(3,4)]
 graph = [[0]*(n+1) for i in range(n+1)]
