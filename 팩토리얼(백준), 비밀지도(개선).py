@@ -9,22 +9,23 @@
 '''
 
 # 답은 맞지만 runtime error
-from abc import abstractproperty
-from math import factorial
 
-n = 719
-a = list(map(int,str(n)))
-a.append(0)
-a.reverse()
-ans = 0
-for i in a:
-    ans += (i*factorial(a.index(i)))
-print(ans)
+# from math import factorial
+
+# n = 719
+# a = list(map(int,str(n)))
+# a.append(0)
+# a.reverse()
+# ans = 0
+# for i in a:
+#     ans += (i*factorial(a.index(i)))
+# print(ans)
 
 
 
 # 비밀 지도 - 비트 연산자 사용!
 
+'''
 import re
 def solution(n, arr1, arr2):
     a1 = [0]*n
@@ -39,3 +40,17 @@ n = 6
 arr1 = [46, 33, 33 ,22, 31, 50]
 arr2 = [27 ,56, 19, 14, 14, 10]
 print(solution(n,arr1,arr2))
+'''
+
+# 진법 변환 
+
+numb = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+n = list(input('number & 진법 : ' ).split(' '))
+a = list(str(n[0]))
+a.reverse()
+b = [numb.index(i) for i in a] #[12, 11, 10] ,30진법
+ans = b[0]
+for j in range(1,len(b)):
+    ans += b[j]*(int(n[1])**j)
+
+print(ans)
