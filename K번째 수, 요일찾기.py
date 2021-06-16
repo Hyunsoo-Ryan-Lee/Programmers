@@ -35,6 +35,22 @@ print(date(5,18))
 '''
 
 
-from collections import deque
-bridge = deque([1]*2)
-print(sum(bridge))
+# def solution(arr):
+#     ans = [arr[0]]
+#     for i in range(1,len(arr)):
+#         if arr[i-1] != arr[i]:
+#             ans.append(arr[i])
+#     return ans
+
+# arr = [4,4,4,3,3]
+
+# print(solution(arr))
+
+
+
+def solution(x,n):
+    ans = []
+    [ans.append(x*i) for i in range(1,n+1)]
+    return ans
+
+print(solution(2,5))
