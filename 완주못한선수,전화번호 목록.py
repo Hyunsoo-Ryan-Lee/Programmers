@@ -38,6 +38,8 @@ print(sorted(a))
 # a.remove("123")
 # a.sort(key=len)
 
+import re
+#  정규표현식 써서 ~~로 시작되는 숫자 판별문 작성
 def aaa(p):
     p.sort(key=len)
     for i in p:
@@ -48,5 +50,5 @@ def aaa(p):
     return "true"
         
         
-a =["123","456","789"]
+a =["1234", "1235", "567"]
 print(aaa(a))
