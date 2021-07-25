@@ -2,10 +2,10 @@
 
 
 
-s = [6,10,20,15,25,10,20]
-s.reverse() # [20, 10, 25, 15, 20, 10, 6]  
-ans = [20]
-for i in range(1, len(s)-1):
-    ans.append(max(ans[i], ans[i-1]+s[i]))
+s = [10,20,15,25,10,20]
+s.reverse() # [20, 10, 25, 15, 20, 10]  
+ans = [0,s[0]]
+for i in range(1, len(s)): 
+    ans.append(max(ans[i], ans[i-1]+s[i], ans[i-1]+s[i-1]))
 print(ans)
 
