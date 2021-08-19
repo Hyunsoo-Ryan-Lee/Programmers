@@ -1,54 +1,25 @@
-# def sol(n,d):
-#     ans = []
-#     d.sort() 
-#     for i in range(len(n)):
-#         for j in range(len(d)):
-#             if int(n[i]) == len(d[j]):
-#                 ans.append(d[j])
-#                 d.pop(j)
-#                 d.append('')
-#                 break
-#     return ans
 
+# 프로그래머스 - H-Index
 
-# n = "2222"
-# d = ["ab","cd","ef","a","b","ab"]
-# print(sol(n,d))
-
-
-# def sol(s):
-#     ans = []
-#     rev = []
-#     for i in range(len(s)+1):
-#         ans.append(s.zfill(i+len(s)))
-#         rev.append(s.zfill(i+len(s))[::-1])
-    
-    
-#     arr =[]
-#     arr2 = []
-#     for j in range(len(ans)):
+# 1번 풀이 - 정답은 맞추는데 런타임 에러남
+# def solution(cit):
+#     li = []
+#     cit.sort() #[0,1,4,5,6]
+#     for i in range(cit[-1]):
 #         cnt = 0
-#         for p in range(len(ans[j])):
-#             if ans[j][p] == rev[j][p]:
+#         for j in cit:
+#             if j >= i:
 #                 cnt += 1
-#         arr.append(cnt)
-#         arr2.append(len(ans[j])-cnt)
-    
+#         if cnt >= i:
+#             li.append(i)
+#     return max(li)
 
-
-#     return ans, rev, arr, arr2
-
-# s = "qwerty"
-# print(sol(s))
-
-# # a = ['abab', '0abab', '00abab', '000abab', '0000abab']
-# # print(a[1][0])
-a = [1,2,3,4,5,6,7]
-
-
-# b = 0
-# while b<2:
-#     a.append(a.pop(0))
-#     b += 1
-
-print(a.pop(2))
+def solution(cit):
+    cit.sort()
+    for i in range(len(cit)):
+        if cit[i] >= len(cit)-i:
+            # i번째의 논문 인용수보다 많은 논문이 'len(cit)-i'개 있다.
+            return len(cit)-i
+    return 0
+cit =  [1,3,4,10,14,16,17,20,20,35]
+print(solution(cit))
