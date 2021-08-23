@@ -1,25 +1,37 @@
+def solution(x, y):
+    if x == 0 and y ==0:
+        return "Possible"
+    
+    sx = 0
+    for i in range(18,-1,-1):
+        if x >= 3**i:
+            sx = i
+            break
 
-# 프로그래머스 - H-Index
+    ans = []
+    while x > 0:
+        for i in range(sx+1,-1,-1):
+            if x >= 3**i:
+                ans.append(i)
+                break
+        x -= 3**i
 
-# 1번 풀이 - 정답은 맞추는데 런타임 에러남
-# def solution(cit):
-#     li = []
-#     cit.sort() #[0,1,4,5,6]
-#     for i in range(cit[-1]):
-#         cnt = 0
-#         for j in cit:
-#             if j >= i:
-#                 cnt += 1
-#         if cnt >= i:
-#             li.append(i)
-#     return max(li)
+    sy = 0
+    for i in range(18,-1,-1):
+        if y >= 3**i:
+            sy = i
+            break
 
-def solution(cit):
-    cit.sort()
-    for i in range(len(cit)):
-        if cit[i] >= len(cit)-i:
-            # i번째의 논문 인용수보다 많은 논문이 'len(cit)-i'개 있다.
-            return len(cit)-i
-    return 0
-cit =  [1,3,4,10,14,16,17,20,20,35]
-print(solution(cit))
+    while y > 0:
+        for i in range(sy+1,-1,-1):
+            if y >= 3**i:
+                ans.append(i)
+                break
+        y -= 3**i
+    ans.sort()
+    if ans == list(range(max(sx,sy)+1)):
+        return 'Possible'
+    else:
+        return 'Impossible'
+
+print(solution(3,10))
