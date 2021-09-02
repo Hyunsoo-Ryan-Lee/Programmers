@@ -62,32 +62,43 @@
 # graph = []
 # for _ in range(n):
 #     graph.append(list(map(int,input().split(' '))))
-n = 5
-graph = [[1,2],[1,3],[1,4],[2,4],[3,4]]
-visited = [True] + [False]*(n-1)
+
+
+
+# bfs와 dfs
+
+p = [(1,2),(1,3),(1,4),(2,4),(3,4)]
+# p = [(5,4),(5,2),(1,2),(3,4),(3,1)]
+n = 4
+graph = [[0]*(n+1) for _ in range(n+1)]
+
+for i in p:
+    graph[i[0]][i[1]] = 1
+    graph[i[1]][i[0]] = 1
+
+# print(graph)
+
+def bfs(v):
+    visited = [True] + [False]*n
+    node = [v]
+    ans = [v]
+    while node:
+        current = node.pop(0)
+        visited[current] = True
+        for i in range(1,n+1):
+            if graph[current][i] == 1 and visited[i] == False:
+                visited[i] = True
+                node.append(i)
+                ans.append(i)
+    return ans
+print(bfs(1))
+
+visit = [True] + [False]*n
 def dfs(v):
-    visited[v] = True
+    visit[v] = True
     print(v,end='')
-    for p in graph:
-        if p[0] == v and visited[p[1]] == False:
-            dfs(p[1])
+    for i in range(1, n+1):
+        if graph[v][i] and visit[i] == False:
+            dfs(i)
     return ''
 print(dfs(1))
-
-ans = []
-def bfs(v):
-    visited = [True] + [False]*4
-    visited[v] = True
-    ans = [v]
-    tot = []
-    print(v,end='')
-    while False in visited:
-        for i in graph:
-            if ans[0] == i[0] and visited[i[1]] == False:
-                visited[i[1]] = True
-                ans.append(i[1])
-                tot.append(i[1])
-                print(i[1],end='')
-        ans.pop(0)
-    return ''
-print(bfs(1))
