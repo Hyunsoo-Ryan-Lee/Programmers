@@ -151,9 +151,106 @@ print(solution(num))
 # print(solution(s,end))
 
 
+#핵심 소스코드의 설명을 주석으로 작성하면 평가에 큰 도움이 됩니다.
+# def solution(code, message):
+#     ans = ''
+#     if message.isalpha():
+#         for i in message:
+#             word = code.index(i)+1
+#             if word<10:
+#                 ans += ('0'+str(word))
+#             else:
+#                 ans += str(word)
+#     if message.isdigit():
+#         for i in range(0,len(message),2):
+#             ans += code[int(message[i:i+2])-1]
+#     return ans
+
+# code = "abcdefghijklmnopqrstuvwxyz"
+# message = "06"
+
+# print(solution(code, message))
 
 
 
 
+# def solution(instructions):
+#     ans = 0
+#     if 'HALT' in instructions:
+#         ind = instructions.index('HALT')
+#     else:
+#         ind = len(instructions)
+#     for i in instructions[:ind]:
+#         if i == 'RIGHT':
+#             ans += 90
+#         elif i == 'LEFT':
+#             ans -= 90
+#         elif i == 'TURN AROUND':
+#             ans += 180
+#         elif i[-1].isdigit():
+#             if i[0] == 'R':
+#                 ans += int(i[6:])
+#             else:
+#                 ans -= int(i[5:])
+#     return ans%360
+
+# a = ["LEFT 50","LEFT","TURN AROUND","TURN AROUND","TURN AROUND"]
+
+# print(solution(a))
 
 
+
+# class Solution:
+#     def solution(self, candles):
+#         cnt = 0
+#         candles.sort(reverse=True)
+#         while cnt != len(candles):
+#             for i in range(cnt+1):
+#                 candles[i] -= 1 
+            
+#             if int(-1) in candles:
+#                 break
+#             candles.sort(reverse=True)
+#             cnt += 1
+    
+#         return cnt
+
+# candles = [2,2,2,4]
+# print(solution(candles))
+
+# def solution(tri):
+#     if len(tri) == 1:
+#         return tri
+#     tri = tri[:][::-1]
+#     t_sep = []
+#     ans = []
+#     check = 0
+#     q_count = 0
+#     for i in tri:
+#         t_sep.append(list(i))
+#         q_count += i.count('?')
+
+#     while q_count != check:
+#         for i in range(len(t_sep)-1):
+#             for j in range(i+1):
+#                 arr = [t_sep[i][j], t_sep[i+1][j], t_sep[i+1][j+1]]
+#                 if arr.count('?') == 1:
+#                     if arr.index('?') == 0:
+#                         t_sep[i][j] = str((int(arr[1])+int(arr[2]))%10)
+#                         check += 1
+#                     elif arr.index('?') == 1:
+#                         t_sep[i+1][j] = str((int(arr[0])-int(arr[2]))%10)
+#                         check += 1
+#                     else:
+#                         t_sep[i+1][j+1] = str((int(arr[0])-int(arr[1]))%10)
+#                         check += 1
+#         if q_count == check:
+#             break
+
+#     for i in t_sep:
+#         ans.append(''.join(i))
+#     return ans[:][::-1]
+
+
+# tri = ["7??677","1?3?","?57","8?","?"]
+# print(solution(tri))
