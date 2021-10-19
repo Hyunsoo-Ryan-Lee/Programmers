@@ -1,41 +1,69 @@
-# N = int(input())
-# S = [list(map(int, input().split())) for _ in range(N)]
 
-# n = 6 
-# s = [[0, 1, 2, 3, 4, 5], [1, 0, 2, 3, 4, 5], [1, 2, 0, 3, 4, 5], [1, 2, 3, 0, 4, 5], [1, 2, 3, 4, 0, 5], [1, 2, 3, 4, 5, 0]]
 
-n = int(input())
-s = [list(map(int, input().split())) for _ in range(n)]
-r = list(range(n))
-from itertools import combinations
+# def solution(begin, target, words):
+#     if target not in words:
+#         return 0
+#     cnt = 0
+#     target = list(target)
+#     arr = []
+#     start = [list(begin)] # [['h', 'i', 't']]
+#     comp = []
+#     for i in words:
+#         arr.append(list(i))
 
-team = list(combinations(r,3))
-t_1 = team[:int(len(team)/2)]
-t_2 = team[int(len(team)/2):][::-1]
-# print(t_1)
-# print(t_2)
-tot_1 = []
-tot_2 = []
-for i in t_1:
-    p = list(combinations(i,2))
-    tot = 0
-    for (a,b) in p:
-        tot += s[a][b]
-        tot += s[b][a]
-    tot_1.append(tot)
+#     while target not in comp:
+#         comp = []
+#         for i in arr:
+#             for j in start: # j = ['h', 'i', 't']
+#                 if len(j) + len(set(j+i))-len(j+i) == 1:
+#                     comp.append(i)
+        
+#         arr = [x for x in arr if not x in comp]
+#         start = comp
+#         cnt += 1
+#     return cnt
+# print(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]))
+# print(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log"]))
+# print(solution("hit", "hot", ["hot", "dot", "dog", "lot", "log"]))
+# print(solution("hit", "cog", ["cog", "log", "lot", "dog", "hot"]))
 
-for i in t_2:
-    p = list(combinations(i,2))
-    tot = 0
-    for (a,b) in p:
-        tot += s[a][b]
-        tot += s[b][a]
-    tot_2.append(tot)
+# begin = "hit"
+# target = "cog"
+# words = ["hot", "dot", "dog", "lot", "log", "cog"]
+# print(solution(begin, target, words))
 
-ans = []
-for i in range(len(tot_1)):
-    ans.append(abs(tot_1[i]-tot_2[i]))
+# a = [['h', 'o', 't'], ['d', 'o', 't'], ['d', 'o', 'g'], ['l', 'o', 't'], ['l', 'o', 'g'], ['c', 'o', 'g']]
+# b = [['h', 'o', 't'],['d', 'o', 't']]
 
+# p = [i for i in a if not i in b]
+# print(p)
+
+# 백준 - 짐정리
+'''
+짐 중 가장 적은 무게의 짐을 이용하여 정리하는 알고리즘
+'''
+
+# n = int(input())
+# bag = []
+# for i in range(n):
+#     bag.append(int(input()))
+bag = [3, 1, 5, 9]
+sol = sorted(bag)
+ans = 0
+while bag != sol:
+    ind = bag.index(min(bag))
+    if ind != 0:
+        change_ind = bag.index(sol[ind])
+        bag[ind], bag[change_ind] = bag[change_ind], bag[ind]
+        ans += (bag[ind] + bag[change_ind])
+    else:
+        cont = 0
+        for i in range(len(bag)):
+            if bag[i] != sol[i]:
+                cont += i
+                break
+        ind2 = bag.index(min(bag[cont:]))
+        bag[0], bag[ind2] = bag[ind2], bag[0]
+        ans += (bag[0] + bag[ind2])
 print(ans)
-print(tot_1)
-print(tot_2)
+

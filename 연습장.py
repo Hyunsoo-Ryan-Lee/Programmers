@@ -254,3 +254,93 @@ print(solution(num))
 
 # tri = ["7??677","1?3?","?57","8?","?"]
 # print(solution(tri))
+
+# def solution(map):
+#     graph = []
+#     for i in map:
+#         graph.append(i.split(' '))
+#     arr = [int(graph[0][0])]
+#     c = [0,0]
+#     while c != [len(graph)-1, len(graph[0])-1]:
+#         if c[0] < len(graph)-1 and c[1] < len(graph[0])-1:
+#             arr.append(max(int(graph[c[0]+1][c[1]]), int(graph[c[0]][c[1]+1])))
+#             if arr[-1] == int(graph[c[0]+1][c[1]]):
+#                 c[0] += 1
+#             else:
+#                 c[1] += 1
+#         elif c[0] == len(graph)-1:
+#             arr.append(int(graph[c[0]][c[1]+1]))
+#             c[1] += 1
+#         elif c[1] == len(graph[0])-1:
+#             arr.append(int(graph[c[0]+1][c[1]]))
+#             c[0] += 1
+#     return sum(arr)
+
+
+# print(solution(["1 0 1","2 3 1","2 0 0"]))
+
+
+# def sol(str):
+#     if len(str) == 1 or len(str) == 2:
+#         return str
+#     str = '0'+str
+#     a = len(str)
+#     arr = list(range(0,a,3))
+#     ans = ''
+#     for i in range(1,a):
+#         if i not in arr:
+#             ans += str[i]
+#         else:
+#             if str[i].islower():
+#                 ans += str[i].upper()
+#             else:
+#                 ans += '!'
+#     return ans
+
+# print(sol('qwePPPPPop'))
+
+# def sol(message):
+#     word = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 '
+#     wordnumb = []
+#     for i in message:
+#         a = word.index(i)
+#         wordnumb.append(bin(a)[2:].zfill(6))
+#     tot = ''.join(wordnumb)
+#     if len(tot) % 8 != 0:
+#         totword = tot + '0'*((len(tot)//8+1)*8-len(tot))
+#     else:
+#         totword = tot
+#     wordsplit = []
+#     for i in range(len(totword)//8):
+#         b = int('0b'+totword[8*i:8*(i+1)],2)
+#         wordsplit.append(format(b,'X').zfill(2))
+
+
+#     return ''.join(wordsplit)
+
+
+# print(sol('a bAB01'))
+
+
+def sol(maxK, collision):
+    if maxK//collision <= 2:
+        return 2
+    numb = len(bin(maxK//collision)[2:])
+    middle = (2**(numb-1) + 2**numb)//2
+    
+    a = [False,False] + [True]*(2**numb-1)
+    primes = []
+    distance = []
+    for i in range(2,2**numb):
+        if a[i]:
+            if i>2**(numb-1):
+                primes.append(i)
+                distance.append(abs(middle-i))
+            for j in range(2*i, 2**numb, i):
+                a[j] = False
+    if len(primes) == 0:
+        return -1
+    else:
+        return primes[distance.index(min(distance))]
+
+print(sol(1,10))
